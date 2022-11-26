@@ -4,13 +4,14 @@ Shader "Unlit/Water Depth"
     { 
         _DeepColor ("Deep Color", Color) = (0,0,0,0)
         _SurfaceColor ("Surface Color", Color) = (1,1,1,1)
+        _DepthScale ("Depth Scale", Range(0,1)) = 1
     }
     SubShader
     {
         Tags { "RenderType"="Transparent" "Queue" = "Transparent" }
         ZWrite Off
-        LOD 100
         Cull Back
+        Blend SrcAlpha OneMinusSrcAlpha
 
         Pass
         {
@@ -23,6 +24,7 @@ Shader "Unlit/Water Depth"
             sampler2D _CameraDepthTexture;
             float4 _DeepColor;
             float4 _SurfaceColor;
+            float _DepthScale;
 
             struct VertexInput
             {
@@ -63,8 +65,46 @@ Shader "Unlit/Water Depth"
 
                 // i.screenPos.w is the view space depth
                 float waterDepth = (sceneDepth-i.screenPos.w);
-                return lerp(_SurfaceColor, _DeepColor, waterDepth*0.5);
+                clip(waterDepth-0.1);
+                return lerp(_SurfaceColor, _DeepColor, waterDepth*_DepthScale);
 
+            }
+            ENDCG
+        }
+        
+        // When under water, this shows the surface of the water
+        Cull Front
+        Pass
+        {
+            CGPROGRAM
+            #pragma vertex vert
+            #pragma fragment frag
+
+            #include "UnityCG.cginc"
+
+            float4 _SurfaceColor;
+
+            struct VertexInput
+            {
+                float4 vertex : POSITION;
+            };
+
+            struct Interpolators
+            {
+                float4 vertex : SV_POSITION;
+            };
+
+
+            Interpolators vert (VertexInput v)
+            {
+                Interpolators o;
+                o.vertex = UnityObjectToClipPos(v.vertex);
+                return o;
+            }
+
+            float4 frag (Interpolators i) : SV_Target
+            {
+                return _SurfaceColor;
             }
             ENDCG
         }
