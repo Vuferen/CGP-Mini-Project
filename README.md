@@ -12,7 +12,7 @@ The shader contains the following properties:
 - _FoamColor - the color of the foam
 - _FoamPercent - how much foam, as a percentage of the depth
 
-All custom parts of the code are commented:
+All custom parts of the code have comments:
 
 ![Water Depth Code](https://github.com/Vuferen/CGP-Mini-Project/blob/master/Water%20Depth%20Code.png "Water Depth Code")
 
