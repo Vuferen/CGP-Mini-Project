@@ -12,6 +12,12 @@ The shader contains the following properties:
 - _FoamColor - the color of the foam
 - _FoamPercent - how much foam, as a percentage of the depth
 
+All custom parts of the code are commented:
+
+![Water Depth Code](https://github.com/Vuferen/CGP-Mini-Project/blob/master/Water%20Depth%20Code.png "Water Depth Code")
+
+Note: The shader also contains a second pass to handle the underside of the water
+
 ## Setup
 1. Clone or download the repository
 2. Open with Unity
