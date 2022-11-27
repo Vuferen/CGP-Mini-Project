@@ -23,14 +23,15 @@ Shader "Unlit/Water Depth"
 
             #include "UnityCG.cginc"
 
-            sampler2D _CameraDepthTexture;
-
             float4 _DeepColor;
             float4 _SurfaceColor;
             float _DepthScale;
 
             float4 _FoamColor;
             float _FoamPercent;
+
+            // Get the depth texture from the camera
+            sampler2D _CameraDepthTexture;
 
             struct VertexInput
             {
@@ -46,12 +47,13 @@ Shader "Unlit/Water Depth"
             Interpolators vert (VertexInput v)
             {
                 Interpolators o;
-                // Make the water move up and down
-                v.vertex += sin(_Time) * 0.05;
+                // Make the water move up and down. 0.05 scales by how much the water goes up and down
+                v.vertex += sin(_Time.y) * 0.05;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
 
-                // Get uvs based on screen position
+                // Get uvs based on screen position. 
+                // This is a 4D vector where the alpha component contains the view space depth (distance to surface)
                 o.screenPos = ComputeScreenPos(o.vertex);
                 
                 return o;
