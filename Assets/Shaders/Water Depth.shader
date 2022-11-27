@@ -82,11 +82,14 @@ Shader "Unlit/Water Depth"
                 float foamMask = waterDepth < _FoamPercent;
                 // Apply the foam mask
                 float4 foam = foamMask * _FoamColor;
+                // Apply the inverse of the foam mask to stop the water and foam from blending
+                depthGradient *= (1-foamMask);
 
                 // Output the water depth with foam added
                 return depthGradient + foam;
             }
             ENDCG
+            
         }
 
 
