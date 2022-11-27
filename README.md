@@ -24,3 +24,10 @@ Note: The shader also contains a second pass to handle the underside of the wate
 3. Open SampleScene
 4. Press play
 5. Adjust the properties to your liking
+
+## Sources
+Unity Documentation, "Camera’s Depth Texture":
+https://docs.unity3d.com/2018.4/Documentation/Manual/SL-CameraDepthTexture.html
+
+Unity Documentation, "Using Depth Textures":
+https://docs.unity3d.com/2018.4/Documentation/Manual/SL-DepthTextures.html
