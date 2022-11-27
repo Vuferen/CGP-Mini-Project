@@ -47,7 +47,7 @@ Shader "Unlit/Water Depth"
             Interpolators vert (VertexInput v)
             {
                 Interpolators o;
-                // Make the water move up and down. 0.05 scales by how much the water goes up and down
+                // Make the water move up and down. 0.05 scales by how much the water moves up and down
                 v.vertex += sin(_Time.y) * 0.05;
 
                 o.vertex = UnityObjectToClipPos(v.vertex);
