@@ -71,9 +71,9 @@ Shader "Unlit/Water Depth"
 
                 // i.screenPos.w is the view space depth (distance to surface). 
                 // Subtract it from the scene depth (distance to bottom of water) to get the depth of the water from the camera's perspective
-                float waterDepth = (sceneDepth-i.screenPos.w);
+                float waterDepth = (sceneDepth - i.screenPos.w);
                 // Scale the depth and clamp it between 0 and 1
-                waterDepth = saturate(waterDepth*_DepthScale);
+                waterDepth = saturate(waterDepth * _DepthScale);
                 
                 // Use the depth in a lerp to interpolate between the surface color and deep color
                 float4 depthGradient = lerp(_SurfaceColor, _DeepColor, waterDepth);
@@ -83,7 +83,7 @@ Shader "Unlit/Water Depth"
                 // Apply the foam mask
                 float4 foam = foamMask * _FoamColor;
                 // Apply the inverse of the foam mask to stop the water and foam from blending
-                depthGradient *= (1-foamMask);
+                depthGradient *= (1 - foamMask);
 
                 // Output the water depth with foam added
                 return depthGradient + foam;
@@ -135,7 +135,7 @@ Shader "Unlit/Water Depth"
             float4 frag (Interpolators i) : SV_Target
             {
                 // Scale the distance to the surface and clamp it between 0 and 1
-                float waterDepth = saturate(i.screenPos.w*_DepthScale);
+                float waterDepth = saturate(i.screenPos.w * _DepthScale);
                 
                 // Use the depth in a lerp to interpolate between the surface color and deep color
                 float4 depthGradient = lerp(_SurfaceColor, _DeepColor, waterDepth);
