@@ -22,8 +22,10 @@ Material:
     m_TexEnvs: []
     m_Ints: []
     m_Floats:
-    - _DepthScale: 0.294
+    - _DepthScale: 0.162
+    - _FoamPercent: 0.08
     m_Colors:
-    - _DeepColor: {r: 0, g: 0.14109409, b: 0.5471698, a: 0.80784315}
-    - _SurfaceColor: {r: 0, g: 0.76969385, b: 0.990566, a: 0.5176471}
+    - _DeepColor: {r: 0, g: 0.14109409, b: 0.5471698, a: 0.92156863}
+    - _FoamColor: {r: 0.9386792, g: 0.9786711, b: 1, a: 1}
+    - _SurfaceColor: {r: 0, g: 0.7860899, b: 0.99215686, a: 0.5176471}
   m_BuildTextureStacks: []
