@@ -16,7 +16,7 @@ All custom parts of the code have comments:
 
 ![Water Depth Code](https://github.com/Vuferen/CGP-Mini-Project/blob/master/Water%20Depth%20Code.png "Water Depth Code")
 
-Note: The shader also contains a second pass to handle the underside of the water
+Note: The shader also contains a second pass to handle the underside of the water.
 
 ## Setup
 1. Clone or download the repository
